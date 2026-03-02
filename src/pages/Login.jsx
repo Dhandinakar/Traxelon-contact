@@ -23,10 +23,13 @@ export default function Login() {
     setLoading(true);
     try {
       const result = await login(email, password);
-    
-      // Check if email is verified
-      if (!result.user.emailVerified) {
-        await auth.signOut(); // sign them out immediately
+
+      // Reload user to get latest emailVerified status from Firebase
+      await result.user.reload();
+      const freshUser = auth.currentUser;
+
+      if (!freshUser.emailVerified) {
+        await auth.signOut();
         setError("Please verify your email before logging in. Check your inbox.");
         setLoading(false);
         return;
