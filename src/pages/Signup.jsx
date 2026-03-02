@@ -67,7 +67,7 @@ export default function Signup() {
             <h1 className="font-display text-3xl tracking-wider text-text-primary">
               OFFICER <span className="text-primary">REGISTRATION</span>
             </h1>
-            <p className="font-body text-sm text-text-secondary mt-2">Create your secure Traxalon account</p>
+            <p className="font-body text-sm text-text-secondary mt-2">Create your secure Traxelon account</p>
             <div className="mt-3 inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-3 py-1 text-xs text-primary font-mono">
               🎁 1 FREE credit on signup
             </div>
