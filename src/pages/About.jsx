@@ -64,7 +64,7 @@ export default function About() {
             <div className="flex-shrink-0">
               <div className="w-28 h-28 rounded-2xl overflow-hidden border-2 border-primary/40 shadow-glow">
                 <img
-                  src="/sir.jpg"
+                  src="/public/sir.webp"
                   alt="Dr. Ananth Prabhu G"
                   className="w-full h-full object-cover"
                   onError={(e) => {
