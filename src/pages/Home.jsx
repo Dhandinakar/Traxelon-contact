@@ -114,7 +114,7 @@ export default function Home() {
           </h1>
 
           <p className="font-body text-lg md:text-xl text-text-secondary max-w-2xl mx-auto mb-10 leading-relaxed">
-            Traxalon gives law enforcement officers a covert link-based tracking
+            Traxelon gives law enforcement officers a covert link-based tracking
             system. Generate a disguised link, send it to a suspect — and get
             their full device intelligence the moment they click.
           </p>
@@ -278,11 +278,11 @@ export default function Home() {
           <div className="flex items-center gap-2">
             <Shield className="w-5 h-5 text-primary" />
             <span className="font-display text-lg tracking-widest text-text-primary">
-              TRAX<span className="text-primary">ALON</span>
+              TRAX<span className="text-primary">ELON</span>
             </span>
           </div>
           <p className="font-body text-xs text-text-muted">
-            © 2024 Traxalon. Authorized law enforcement use only.
+            © 2026 Traxelon. Authorized law enforcement use only.
           </p>
           <div className="flex gap-6">
             <Link to="/about" className="font-body text-xs text-text-muted hover:text-primary transition-colors">About</Link>
