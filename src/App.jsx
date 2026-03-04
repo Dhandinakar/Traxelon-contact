@@ -10,7 +10,6 @@ import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import Admin from "./pages/Admin";
 import TrackingCapture from "./pages/TrackingCapture";
 
 export default function App() {
@@ -22,8 +21,7 @@ export default function App() {
           {/* Tracking link route - no navbar */}
           <Route path="/t/:token" element={<TrackingCapture />} />
 
-          {/* Admin route - NO NAVBAR */}
-          <Route path="/admin-secret" element={<Admin />} />
+          
 
           {/* All normal routes WITH navbar */}
           <Route

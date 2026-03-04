@@ -110,14 +110,11 @@ export async function sendOtpEmail(toEmail, otp) {
         console.log(`[Brevo] OTP email sent to ${toEmail}`);
     } catch (err) {
         const status = err.response?.status;
-        const brevoMsg = err.response?.data ?.message || err.message;
+        const brevoMsg = err.response?.data?.message || err.message;
         console.error(`[Brevo] HTTP ${status}:`, brevoMsg, JSON.stringify(err.response?.data || {}));
         throw new Error(`Brevo error (${status}): ${brevoMsg}`);
     }
 }
-
-
-
 
 
 
