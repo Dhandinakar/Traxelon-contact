@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Mail, Phone, MapPin, Send, Shield, Activity, ExternalLink } from "lucide-react";
+import { Mail, MapPin, Send, Shield, Activity, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
+import { FaWhatsapp } from "react-icons/fa";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", badge: "", subject: "", message: "" });
@@ -105,9 +106,9 @@ export default function Contact() {
                 GET IN <span className="text-primary">TOUCH</span>
               </h3>
               {[
-                { icon: <Mail className="w-5 h-5" />, label: "Email", value: "educatorananth@gmail.com", href: "mailto:educatorananth@gmail.com" },
-                { icon: <Phone className="w-5 h-5" />, label: "Hotline", value: "+91 8951511111", href: "tel:+918951511111" },
-                { icon: <MapPin className="w-5 h-5" />, label: "Office", value: "SurePass Academy, #7-9, II Floor, Manasa Towers, MG Road, Mangalore 575003", href: MAPS_URL },
+                { icon: <Mail className="w-5 h-5" />, label: "Email", value: "support@traxalon.gov.in", href: "support@traxalon.gov.in" },
+                { icon: <FaWhatsapp className="w-5 h-5" />, label: "WhatsApp", value: "+91 8951511111", href: "tel:+918951511111" },
+                { icon: <MapPin className="w-5 h-5" />, label: "Office", value: "Torsecure Cyber LLP ,Door No. 4-9-765/17, Second Floor, Manasa Towers, MG Road, Kodialbail, Mangalore, Karnataka", href: MAPS_URL },
               ].map((item, i) => (
                 <a key={i} href={item.href} target={i === 2 ? "_blank" : undefined} rel="noreferrer"
                   className="flex items-start gap-3 group hover:opacity-80 transition-opacity">
