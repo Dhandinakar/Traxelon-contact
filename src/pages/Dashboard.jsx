@@ -13,6 +13,7 @@ export default function Dashboard() {
   const { currentUser, userProfile, fetchUserProfile } = useAuth();
   const [links, setLinks] = useState([]);
   const [label, setLabel] = useState("");
+  const [destinationUrl, setDestinationUrl] = useState("");
   const [generating, setGenerating] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -42,13 +43,15 @@ export default function Dashboard() {
   async function handleGenerate(e) {
     e.preventDefault();
     if (credits < 1) { setShowPayment(true); return; }
+    if (!destinationUrl) { setError("Destination URL is required"); return; }
     setGenerating(true);
     setError("");
     setSuccess("");
     try {
-      const { trackingUrl } = await createTrackingLink(currentUser.uid, label || "Tracking Link");
+      const { trackingUrl } = await createTrackingLink(currentUser.uid, label || "Tracking Link", destinationUrl);
       setSuccess(trackingUrl);
       setLabel("");
+      setDestinationUrl("");
       await fetchUserProfile(currentUser.uid);
     } catch (err) {
       setError(err.message);
@@ -126,6 +129,11 @@ export default function Dashboard() {
               )}
 
               <form onSubmit={handleGenerate} className="space-y-4">
+                <div>
+                  <label className="block font-body text-xs text-text-secondary uppercase tracking-wider mb-1.5">Destination URL (Required)</label>
+                  <input type="url" value={destinationUrl} onChange={(e) => setDestinationUrl(e.target.value)} placeholder="https://example.com" required
+                    className="w-full bg-surface border border-surface-border rounded-lg px-4 py-3 font-body text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-primary transition-colors" />
+                </div>
                 <div>
                   <label className="block font-body text-xs text-text-secondary uppercase tracking-wider mb-1.5">Case / Label (optional)</label>
                   <input type="text" value={label} onChange={(e) => setLabel(e.target.value)} placeholder="e.g., Case #2024-078"

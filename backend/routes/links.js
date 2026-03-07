@@ -49,12 +49,12 @@ async function reverseGeocode(lat, lon) {
     try {
         const res = await axios.get(
             `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`, {
-                headers: {
-                    "User-Agent": "Traxelon/1.0",
-                    Accept: "application/json",
-                },
-                timeout: 6000,
-            }
+            headers: {
+                "User-Agent": "Traxelon/1.0",
+                Accept: "application/json",
+            },
+            timeout: 6000,
+        }
         );
         const data = res.data;
         const addr = data.address || {};
@@ -106,7 +106,7 @@ async function enrichIP(ip) {
 router.get("/health", (_req, res) => res.status(200).json({ ok: true }));
 
 // POST /api/links/capture
-router.post("/capture", async(req, res) => {
+router.post("/capture", async (req, res) => {
     try {
         const {
             token,
@@ -258,11 +258,11 @@ router.post("/capture", async(req, res) => {
 });
 
 // POST /api/links/shorten (create tracking link from backend)
-router.post("/shorten", async(req, res) => {
+router.post("/shorten", async (req, res) => {
     try {
-        const { uid, label } = req.body;
+        const { uid, label, destinationUrl } = req.body;
         if (!uid) return res.status(400).json({ error: "uid is required" });
-        const result = await createTrackingLink(uid, label);
+        const result = await createTrackingLink(uid, label, destinationUrl);
         return res.status(200).json(result);
     } catch (err) {
         console.error("[POST /shorten]", err.message);
@@ -271,14 +271,14 @@ router.post("/shorten", async(req, res) => {
 });
 
 // GET /api/links/geo-ip
-router.get("/geo-ip", async(req, res) => {
+router.get("/geo-ip", async (req, res) => {
     const ip = getClientIP(req);
     const data = await enrichIP(ip);
     return res.status(200).json(data);
 });
 
 // POST /api/links/credits
-router.post("/credits", async(req, res) => {
+router.post("/credits", async (req, res) => {
     try {
         const { uid, amount } = req.body;
         if (!uid || !amount) return res.status(400).json({ error: "uid and amount required" });
@@ -289,15 +289,15 @@ router.post("/credits", async(req, res) => {
     }
 });
 
-router.post("/delete-user", async(req, res) => {
+router.post("/delete-user", async (req, res) => {
     try {
         const { uid } = req.body;
         if (!uid) return res.status(400).json({ error: "uid required" });
         const adminApp = (await
-            import ("../firebase/config.js")).default;
+            import("../firebase/config.js")).default;
         await adminApp.auth().deleteUser(uid);
         const { db } = await
-        import ("../firebase/config.js");
+            import("../firebase/config.js");
         await db.collection("users").doc(uid).delete();
         return res.status(200).json({ success: true });
     } catch (err) {

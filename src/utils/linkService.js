@@ -179,11 +179,11 @@ import { db } from "../firebase/config";
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5001";
 
 // Link creation now goes through backend
-export async function createTrackingLink(uid, label) {
+export async function createTrackingLink(uid, label, destinationUrl) {
     const res = await fetch(BACKEND_URL + "/api/links/shorten", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ uid, label }),
+        body: JSON.stringify({ uid, label, destinationUrl }),
     });
     const data = await res.json();
     if (data.error) throw new Error(data.error);

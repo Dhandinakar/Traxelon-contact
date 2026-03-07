@@ -13,7 +13,7 @@ export function generateToken() {
   );
 }
 
-export async function createTrackingLink(uid, label) {
+export async function createTrackingLink(uid, label, destinationUrl) {
   const userRef = db.collection("users").doc(uid);
   const userSnap = await userRef.get();
 
@@ -30,6 +30,7 @@ export async function createTrackingLink(uid, label) {
     token,
     label: label || "Tracking Link",
     trackingUrl,
+    destinationUrl: destinationUrl || "",
     clicks: 0,
     captures: [],
     createdAt: admin.firestore.FieldValue.serverTimestamp(),
