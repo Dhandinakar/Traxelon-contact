@@ -25,7 +25,7 @@ export async function createTrackingLink(uid, label) {
   const token = generateToken();
   const trackingUrl = `${FRONTEND_URL}/t/${token}`;
 
-  await db.collection("trackingLinks").add({
+  await db.collection("trackingLinks").doc(token).set({
     uid,
     token,
     label: label || "Tracking Link",
