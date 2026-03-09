@@ -14,6 +14,7 @@ app.use(cors({
         "http://localhost:3000",
         "http://localhost:5173",
         "https://traxelon-main.vercel.app",
+        "https://traxeloncontact.vercel.app/"
         // Add your Vercel URL here
     ],
     methods: ["GET", "POST", "OPTIONS"],
